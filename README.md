@@ -1,6 +1,6 @@
 # fishdraw
 
-*procedurally generated fish drawings*
+*procedurally generated fish drawings. [demo](https://fishdraw.glitch.me/)*
 
 ![](samples/000020.svg)
 
@@ -11,6 +11,8 @@
 - export drawing animation:
 
 ![](samples/animated.svg)
+
+
 
 ## usage
 
