@@ -525,9 +525,11 @@ function vein_shape(poly,n=50){
 
 function smalldot_shape(poly,scale=1){
   let samples = [];
-  poissondisk(500,350,5*scale,samples);
+  let bbox = get_bbox(poly);
+  poissondisk(bbox.w,bbox.h,5*scale,samples);
   for (let i = 0; i < samples.length; i++){
-    samples[i][1]-=50;
+    samples[i][0] += bbox.x;
+    samples[i][1] += bbox.y;
   }
   let out = [];
   let n = 7;
