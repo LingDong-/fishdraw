@@ -845,6 +845,37 @@ function draw_svg_anim(polylines){
   return o;
 }
 
+function draw_ps(polylines){
+  let o = `%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 520 320
+0.5 setlinewidth
+0.5 0.5 translate
+/m /moveto load def
+/l /lineto load def
+/F /stroke load def
+%%EndPageSetup
+10 10 m
+510 10 l
+510 310 l
+10 310 l
+closepath
+F
+`;
+  for (let i = 0; i < polylines.length; i++){
+    for (let j = 0; j < polylines[i].length; j++){
+      let [x,y] = polylines[i][j];
+      o += `${(~~((x+10)*100)) /100} ${(~~((310-y)*100)) /100} `;
+      if (j == 0) {
+        o += `m\n`;
+      } else {
+        o += `l\n`;
+      }
+    }
+    o += `F\n\n`;
+  }
+  return o;
+}
+
 
 
 
@@ -2566,6 +2597,8 @@ if (typeof module != "undefined"){
       console.log(draw_svg_anim(polylines));
     }else if (format == 'csv'){
       console.log(polylines.map(x=>x.flat().join(',')).join('\n'));
+    }else if (format == 'ps'){
+      console.log(draw_ps(polylines));
     }
   }
 }
