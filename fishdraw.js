@@ -848,7 +848,7 @@ function draw_svg_anim(polylines){
 function draw_ps(polylines){
   let o = `%!PS-Adobe-3.0 EPSF-3.0
 %%BoundingBox: 0 0 520 320
-0.5 setlinewidth
+1 setlinewidth
 0.5 0.5 translate
 /m /moveto load def
 /l /lineto load def
