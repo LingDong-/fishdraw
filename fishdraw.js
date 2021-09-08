@@ -793,13 +793,12 @@ function draw_svg(polylines){
   return o;
 }
 
-function draw_svg_anim(polylines){
+function draw_svg_anim(polylines,speed){
   let o = `<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320">`;
   o += `<rect x="0" y="0" width="520" height="320" fill="floralwhite"/><rect x="10" y="10" width="500" height="300" stroke="black" stroke-width="1" fill="none"/>`
   let lengths = [];
   let acc_lengths = [];
   let total_l = 0;
-  let speed = 0.005;
   for (let i = 0; i < polylines.length; i++){
     let l = 0;
     for (let j = 1; j < polylines[i].length; j++){
@@ -2580,12 +2579,16 @@ if (typeof module != "undefined"){
   if (require.main === module) {
     let seed = undefined;
     let format = 'svg';
+    let speed = 0.005;
     for (let i = 2; i < process.argv.length; i++){
       let a = process.argv[i];
       if (a == '--seed'){
         seed = process.argv[i+1];
       }else if (a == '--format'){
         format = process.argv[i+1];
+      }else if (a == '--speed'){
+        if (process.argv[i+1] > 0)
+          speed = speed / process.argv[i+1];
       }
     }
     let polylines = main(seed);
@@ -2594,7 +2597,7 @@ if (typeof module != "undefined"){
     }else if (format == 'json'){
       console.log(JSON.stringify(polylines));
     }else if (format == 'smil'){
-      console.log(draw_svg_anim(polylines));
+      console.log(draw_svg_anim(polylines,speed));
     }else if (format == 'csv'){
       console.log(polylines.map(x=>x.flat().join(',')).join('\n'));
     }else if (format == 'ps'){
