@@ -22,13 +22,14 @@ basic
 node fishdraw.js > output.svg
 ```
 
-specify seed (from a string) and output format:
+specify seed (from a string), speed of drawing and output format:
 
 ```
-node fishdraw.js --seed "Biggus fishus" --format smil > output.svg
+node fishdraw.js --seed "Biggus fishus" --format smil --speed 2 > output.svg
 ```
 
 - the seed string is used as the name of the fish (printed in the drawing). If unspecified, a random pseudo-Latin name will be auto generated.
+- the speed number is used to control the speed of drawing. Larger the number is, faster it draws.
 - format options: `svg` (regular svg), `smil` (animated svg), `csv` (each polyline on a comma-separated line) and `json`.
 
 use as JS library:
